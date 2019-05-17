@@ -28,6 +28,8 @@ T-GCN Cell:<br>
 * pandas
 * math
 
+Install it with `conda create -f environment.yml` (or `conda update`, if you have a conda environment already; look [here](conda env update -f local.yml --prune) if you need specific help)
+
 ## Run the demo
 Python main.py
 
