@@ -134,6 +134,8 @@ if __name__ == "__main__":
     x_axe,batch_loss,batch_rmse,batch_pred = [], [], [], []
     test_loss,test_rmse,test_mae,test_acc,test_r2,test_var,test_pred = [],[],[],[],[],[],[]
 
+    test_label = np.reshape(testY, [-1, num_nodes])
+    test_label1 = test_label * max_value
     for epoch in range(training_epoch):
         for m in range(totalbatch):
             mini_batch = trainX[m * batch_size : (m+1) * batch_size]
@@ -146,9 +148,7 @@ if __name__ == "__main__":
          # Test completely at every epoch
         loss2, rmse2, test_output = sess.run([loss, error, y_pred],
                                              feed_dict = {inputs:testX, labels:testY})
-        test_label = np.reshape(testY,[-1,num_nodes])
         rmse, mae, acc, r2_score, var_score = evaluation(test_label, test_output)
-        test_label1 = test_label * max_value
         test_output1 = test_output * max_value
         test_loss.append(loss2)
         test_rmse.append(rmse * max_value)
