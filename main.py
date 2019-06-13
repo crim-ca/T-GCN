@@ -6,7 +6,7 @@ import math
 import os
 import numpy.linalg as la
 from models.input_data import preprocess_data,load_sz_data,load_los_data
-from tgcn import tgcnCell
+from models.tgcn import tgcnCell
 
 from sklearn.metrics import mean_squared_error,mean_absolute_error
 #import matplotlib.pyplot as plt
