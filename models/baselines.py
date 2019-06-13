@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from . import DATA_DIR
+import os
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error,mean_absolute_error
@@ -32,8 +34,9 @@ def evaluation(a,b):
     r2 = 1-((a-b)**2).sum()/((a-a.mean())**2).sum()
     var = 1-(np.var(a - b))/np.var(a)
     return rmse, mae, 1-F_norm, r2, var
- 
-path = r'data/los_speed.csv'
+
+
+path = os.path.join(DATA_DIR, 'los_speed.csv')
 data = pd.read_csv(path)
 
 time_len = data.shape[0]

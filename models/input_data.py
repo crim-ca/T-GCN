@@ -7,19 +7,28 @@ Created on Tue Apr 10 15:15:50 2018
 
 import numpy as np
 import pandas as pd
-import pickle as pkl
+import os
+from models import DATA_DIR
 
-def load_sz_data(dataset):
-    sz_adj = pd.read_csv(r'data/sz_adj.csv',header=None)
+
+def __load_data(dataset: str):
+    """
+
+    :param dataset: 'sz' or 'los'
+    :return:
+    """
+    sz_adj = pd.read_csv(os.path.join(DATA_DIR, dataset + '_adj.csv'), header=None)
     adj = np.mat(sz_adj)
-    sz_tf = pd.read_csv(r'data/sz_speed.csv')
+    sz_tf = pd.read_csv(os.path.join(DATA_DIR, dataset + '_speed.csv'))
     return sz_tf, adj
 
-def load_los_data(dataset):
-    los_adj = pd.read_csv(r'data/los_adj.csv',header=None)
-    adj = np.mat(los_adj)
-    los_tf = pd.read_csv(r'data/los_speed.csv')
-    return los_tf, adj
+
+def load_sz_data():
+    return __load_data('sz')
+
+
+def load_los_data():
+    return __load_data('los')
 
 
 def preprocess_data(data, time_len, rate, seq_len, pre_len):
@@ -42,4 +51,3 @@ def preprocess_data(data, time_len, rate, seq_len, pre_len):
     testX1 = np.array(testX)
     testY1 = np.array(testY)
     return trainX1, trainY1, testX1, testY1
-    

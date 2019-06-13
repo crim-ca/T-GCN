@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-import pickle as pkl
 import tensorflow as tf
 import pandas as pd
 import numpy as np
 import math
 import os
 import numpy.linalg as la
-from input_data import preprocess_data,load_sz_data,load_los_data
+from models.input_data import preprocess_data,load_sz_data,load_los_data
 from tgcn import tgcnCell
 
-from visualization import plot_result,plot_error
 from sklearn.metrics import mean_squared_error,mean_absolute_error
 #import matplotlib.pyplot as plt
 import time
@@ -69,9 +67,9 @@ if __name__ == "__main__":
 
     ###### load data ######
     if data_name == 'sz':
-        data, adj = load_sz_data('sz')
+        data, adj = load_sz_data()
     elif data_name == 'los':
-        data, adj = load_los_data('los')
+        data, adj = load_los_data()
     else:
         raise RuntimeError("data_name has to be 'sz' or 'los' (currently: %s)" % (data_name))
 
