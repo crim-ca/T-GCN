@@ -9,26 +9,29 @@ import numpy as np
 import pandas as pd
 import os
 from models import DATA_DIR
+from typing import Optional
 
 
-def __load_data(dataset: str):
+def __load_data(dataset: str, data_folder: Optional[str] = None):
     """
 
     :param dataset: 'sz' or 'los'
+    :param data_folder the root of the data; if None, takes local definition.
     :return:
     """
-    sz_adj = pd.read_csv(os.path.join(DATA_DIR, dataset + '_adj.csv'), header=None)
+    data_dir = DATA_DIR if data_folder is None else data_folder
+    sz_adj = pd.read_csv(os.path.join(data_dir, dataset + '_adj.csv'), header=None)
     adj = np.mat(sz_adj)
-    sz_tf = pd.read_csv(os.path.join(DATA_DIR, dataset + '_speed.csv'))
+    sz_tf = pd.read_csv(os.path.join(data_dir, dataset + '_speed.csv'))
     return sz_tf, adj
 
 
-def load_sz_data():
-    return __load_data('sz')
+def load_sz_data(data_folder: Optional[str] = None):
+    return __load_data('sz', data_folder)
 
 
-def load_los_data():
-    return __load_data('los')
+def load_los_data(data_folder: Optional[str] = None):
+    return __load_data('los', data_folder)
 
 
 def preprocess_data(data, time_len, rate, seq_len, pre_len):
