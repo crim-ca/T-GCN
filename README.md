@@ -20,6 +20,15 @@ T-GCN Cell:<br>
 
 
 # The Code
+
+## Notebooks
+
+To make code review easier, all notebooks have to be cleaned with `nbstripout`. Two choices here; either:
+
+1. the notebook is manually cleaned with `nbstripout <notebook-path>`
+2. or the utility is installed as a git filter, as such: `nbstripout --install` (see [this video](https://www.youtube.com/watch?v=BEMP4xacrVc) for a quick understanding) 
+
+
 ## Requirements:
 * tensorflow
 * scipy
